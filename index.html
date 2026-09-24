@@ -99,7 +99,7 @@
 
   <section class="card">
     <div class="field">
-      <label for="schwelle">Öffnungen abziehen ab Einzelfläche (m²)</label>
+      <label for="schwelle">Öffnungen abziehen ab Einzelfläche (m2)</label>
       <input id="schwelle" type="text" inputmode="decimal" autocomplete="off">
     </div>
   </section>
@@ -136,8 +136,8 @@ function zahl(str) {
 }
 
 const fmt = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-function qm(n) { return fmt.format(n) + " m²"; }
-function m(n)  { return fmt.format(n) + " m"; }
+function qm(n) { return fmt.format(n) + " m2"; }
+function m(n)  { return fmt.format(n) + " Lfm."; }
 
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
 

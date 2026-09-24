@@ -128,7 +128,7 @@ Die Auswahl kommt vom Inhaber und wird hier ergänzt, sobald sie vorliegt.
 - [x] Zehn echte Angebote ausgewertet
 - [x] Leistungskatalog als JSON
 - [x] Repo, Node, Claude Code, erster Commit
-- [ ] Flächenrechner (Räume, Öffnungen, Summen)
+- [x] Flächenrechner (Räume, Öffnungen, Summen)
 - [ ] Die 10–15 Alltagspositionen vom Inhaber einbauen
 - [ ] Positionsliste mit Mengen ausgeben
 - [ ] Gegenprobe: ein echtes Altangebot nachrechnen, Abweichung < 5 %
