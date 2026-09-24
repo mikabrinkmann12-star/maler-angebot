@@ -1,0 +1,182 @@
+{
+  "quelle": "Abgetippt aus 10 Screenshots der plancraft-Stammdaten (Reiter Leistungen), Stand 24.09.2026.",
+  "warnung": "Aus Bildern transkribiert, NICHT exportiert. Vor produktivem Einsatz gegen plancraft pruefen. Screenshots hatten Ueberlappungen und abgeschnittene Raender - es koennen Positionen fehlen.",
+  "spalten": "einheit | kurztext | ek | zuschlag_prozent | vk | bezug",
+  "bezug_bedeutung": {
+    "decke": "Menge = Deckenflaeche",
+    "wand": "Menge = Wandflaeche abzueglich Oeffnungen",
+    "wand_decke": "Menge = Wandflaeche + Deckenflaeche",
+    "boden": "Menge = Bodenflaeche",
+    "umfang": "Menge = Raumumfang abzueglich Tuerbreiten",
+    "lfm_manuell": "laufende Meter, von Hand eingeben",
+    "stk": "Anzahl, von Hand eingeben",
+    "pauschal": "Menge = 1",
+    "stunden": "Stundenzahl, von Hand eingeben",
+    "fassade": "Aussenflaeche, nicht Teil der Raumberechnung"
+  },
+
+  "kategorien": {
+
+    "lohn": [
+      { "einheit": "Std.", "kurztext": "Arbeitslohn Malerhelfer", "ek": 32.95, "zuschlag": 0, "vk": 32.95, "bezug": "stunden" },
+      { "einheit": "Std.", "kurztext": "Arbeitslohn Geselle", "ek": 49.85, "zuschlag": 0, "vk": 49.85, "bezug": "stunden" }
+    ],
+
+    "vorbereitung_baustelle": [
+      { "einheit": "Stk.", "kurztext": "Baustelleneinrichtung inkl Abdeckarbeiten fuer Bauteile und Fenster", "ek": 150.00, "zuschlag": 0, "vk": 150.00, "bezug": "pauschal" },
+      { "einheit": "psch.", "kurztext": "Abklebearbeiten", "ek": 0.00, "zuschlag": 0, "vk": 0.00, "bezug": "pauschal", "achtung": "VK ist 0,00 - Preis fehlt" },
+      { "einheit": "m2", "kurztext": "Fussboden abdecken", "ek": 2.10, "zuschlag": 0, "vk": 2.10, "bezug": "boden" },
+      { "einheit": "m2", "kurztext": "Bodenflaeche mit Abdeckmaterial wie Abdeckpappe abdecken.", "ek": 3.45, "zuschlag": 0, "vk": 3.45, "bezug": "boden" },
+      { "einheit": "Stk.", "kurztext": "Gerueststellung mit Auf- und Abbau, fuer 4 Wochen. Jede weitere Woche 50,00", "ek": 0.00, "zuschlag": 0, "vk": 0.00, "bezug": "stk", "achtung": "VK ist 0,00 - Preis fehlt, langer Hinweistext im Langtext" },
+      { "einheit": "Stk.", "kurztext": "Feuchtigkeitsmessung zur Feststellung der Verlegefaehigkeit mit CM-Geraet.", "ek": 85.00, "zuschlag": 0, "vk": 85.00, "bezug": "stk" }
+    ],
+
+    "decke_vorbereitung": [
+      { "einheit": "m2", "kurztext": "Deckenflaechen spachteln", "ek": 6.95, "zuschlag": 0, "vk": 6.95, "bezug": "decke" },
+      { "einheit": "m2", "kurztext": "Deckenflaechen spachteln und schleifen", "ek": 6.79, "zuschlag": -11.19, "vk": 6.03, "bezug": "decke", "achtung": "negativer Zuschlag" },
+      { "einheit": "m2", "kurztext": "Deckenflaechen spachteln, schleifen und grundieren", "ek": 6.79, "zuschlag": 0, "vk": 6.79, "bezug": "decke" },
+      { "einheit": "m2", "kurztext": "Deckenflaechen Q2 spachteln", "ek": 6.95, "zuschlag": 0, "vk": 6.95, "bezug": "decke" },
+      { "einheit": "m2", "kurztext": "Betondeckenflaechen spachteln", "ek": 3.85, "zuschlag": 0, "vk": 3.85, "bezug": "decke" },
+      { "einheit": "m2", "kurztext": "Betondecken/fugen Q3 spachteln und schleifen", "ek": 6.85, "zuschlag": 0, "vk": 6.85, "bezug": "decke" },
+      { "einheit": "m2", "kurztext": "Rigipsdecken und Schraegen Q3 spachteln und schleifen", "ek": 7.45, "zuschlag": 0, "vk": 7.45, "bezug": "decke" },
+      { "einheit": "m2", "kurztext": "Rigipsfllaechen spachteln und schleifen", "ek": 12.55, "zuschlag": 0, "vk": 12.55, "bezug": "decke", "achtung": "Tippfehler im Namen: Rigipsfllaechen" },
+      { "einheit": "m2", "kurztext": "Deckenfugen nachspachteln und schleifen", "ek": 3.52, "zuschlag": 0, "vk": 3.52, "bezug": "decke" }
+    ],
+
+    "decke_beschichtung": [
+      { "einheit": "m2", "kurztext": "Decke mit Dispersionsfarbe weiss streichen", "ek": 5.85, "zuschlag": 0, "vk": 5.85, "bezug": "decke" },
+      { "einheit": "m2", "kurztext": "Herstellen eines farbigen Anstrichs auf Deckenflaechen. Zweifacher Anstrich", "ek": 14.25, "zuschlag": 0, "vk": 14.25, "bezug": "decke" },
+      { "einheit": "m2", "kurztext": "Deckenflaechen mit Malervlies tapezieren und streichen", "ek": 12.85, "zuschlag": 0, "vk": 12.85, "bezug": "decke" },
+      { "einheit": "m2", "kurztext": "Decken mit Malervlies tapezieren und steichen", "ek": 12.85, "zuschlag": 0, "vk": 12.85, "bezug": "decke", "achtung": "Dublette zur Zeile darueber, Tippfehler steichen" },
+      { "einheit": "m2", "kurztext": "Deckenflaechen mit Rauhfaser 30 bekleben und streichen", "ek": 12.50, "zuschlag": 0, "vk": 12.50, "bezug": "decke" },
+      { "einheit": "m2", "kurztext": "Deckenflaechen mit Rauhfaser 32 bekleben und streichen", "ek": 12.50, "zuschlag": 0, "vk": 12.50, "bezug": "decke" },
+      { "einheit": "m2", "kurztext": "Deckenflaechen mit Rauhfaser 40 bekleben und streichen", "ek": 13.80, "zuschlag": 0, "vk": 13.80, "bezug": "decke" },
+      { "einheit": "m2", "kurztext": "Filigrandecken spachteln, schleifen, Rauhfaser 40 kleben und weiss streichen", "ek": 14.80, "zuschlag": 0, "vk": 14.80, "bezug": "decke" },
+      { "einheit": "m2", "kurztext": "Gipskartondecken u. Schraegen spachteln, schleifen, Rauhfaser 40 kleben und weiss streichen", "ek": 15.15, "zuschlag": 0, "vk": 15.15, "bezug": "decke" },
+      { "einheit": "m2", "kurztext": "Balkonunterseiten weiss streichen", "ek": 18.85, "zuschlag": 0, "vk": 18.85, "bezug": "decke" }
+    ],
+
+    "wand_vorbereitung": [
+      { "einheit": "m2", "kurztext": "Wandflaechen grundieren", "ek": 1.80, "zuschlag": 0, "vk": 1.80, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Wandflaechen schleifen und grundieren", "ek": 1.45, "zuschlag": 0, "vk": 1.45, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Wandflaechen grundieren und schleifen. (Vorbereitung fuer Rauhfaser 52)", "ek": 2.15, "zuschlag": 0, "vk": 2.15, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Wandflaechen spachteln, schleifen und grundieren", "ek": 5.85, "zuschlag": 40.00, "vk": 8.19, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Waende vollflaechig spachteln und schleifen", "ek": 7.65, "zuschlag": 0, "vk": 7.65, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Waende nachspachteln fuer Rauhfasertapeten", "ek": 1.85, "zuschlag": 50.00, "vk": 2.78, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Wandflaechen in der Qualitaetsstufe Q2 spachteln", "ek": 6.95, "zuschlag": 0, "vk": 6.95, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Wandflaechen in der Qualitaetsstufe Q3 spachteln", "ek": 7.45, "zuschlag": 0, "vk": 7.45, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "GK Q2 spachteln und grundieren inkl. Versiegelung", "ek": 3.65, "zuschlag": 40.00, "vk": 5.11, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Wandflaechen mit Tapeziergrund vorstreichen", "ek": 3.50, "zuschlag": 0, "vk": 3.50, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Waende mit Isolierfarbe gegen Wasserflecken absperren", "ek": 15.00, "zuschlag": 0, "vk": 15.00, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Wandflaechen mit Wasserverduennbares fungizides und algizides Konzentrat einstreichen", "ek": 3.85, "zuschlag": 0, "vk": 3.85, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Betonwandflaechen reinigen", "ek": 1.65, "zuschlag": 0, "vk": 1.65, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "An den Wandflaechen Kalkputz auftragen", "ek": 17.90, "zuschlag": 0, "vk": 17.90, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Spachtelung 2mm, Untergrund ausgleichen", "ek": 6.95, "zuschlag": 0, "vk": 6.95, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Spachtelung 6mm, Untergrund ausgleichen", "ek": 8.35, "zuschlag": 0, "vk": 8.35, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Altanstrich mechanisch vollflaechig entfernen, einschliesslich aller erforderlichen Nebenarbeiten", "ek": 12.25, "zuschlag": 0, "vk": 12.25, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Tapeten entfernen und fachgerecht entsorgen", "ek": 5.65, "zuschlag": 0, "vk": 5.65, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Rauhfaser mehrfach einweichen, entfernen und fachgerecht entsorgen", "ek": 5.85, "zuschlag": 0, "vk": 5.85, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Fliesen grundieren, spachteln, schleifen und absaugen", "ek": 12.25, "zuschlag": 0, "vk": 12.25, "bezug": "wand" }
+    ],
+
+    "wand_beschichtung": [
+      { "einheit": "m2", "kurztext": "Wandflaechen weiss streichen", "ek": 5.65, "zuschlag": 0, "vk": 5.65, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Waend in Nebenraeumen weiss streichen", "ek": 4.58, "zuschlag": 0, "vk": 4.58, "bezug": "wand", "achtung": "Tippfehler: Waend" },
+      { "einheit": "m2", "kurztext": "Waende farblich streichen", "ek": 8.65, "zuschlag": 0, "vk": 8.65, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Farbiger Anstrich", "ek": 7.90, "zuschlag": 0, "vk": 7.90, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Zweifacher Anstrich mit Dispersionsfarbe NAK3 weiss deckend auftragen", "ek": 12.45, "zuschlag": 0, "vk": 12.45, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Aufschlag Wandflaechen hell getoent streichen", "ek": 2.25, "zuschlag": 0, "vk": 2.25, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Aufschlag Wandflaechen mittel getoent streichen", "ek": 2.65, "zuschlag": 0, "vk": 2.65, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Aufschlag Wandflaechen dunkel getoent streichen", "ek": 3.10, "zuschlag": 0, "vk": 3.10, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Wandflaechen spachteln, grundieren und streichen inkl. Versiegelung", "ek": 12.60, "zuschlag": 0, "vk": 12.60, "bezug": "wand" }
+    ],
+
+    "wand_tapete_vlies": [
+      { "einheit": "m2", "kurztext": "Wandflaechen mit Malervlies tapezieren", "ek": 12.99, "zuschlag": 9.24, "vk": 14.19, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Tapeten fachgerecht tapezieren", "ek": 9.85, "zuschlag": 0, "vk": 9.85, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Tapezieren von Wandflaechen mit Mustertapete inkl. Material", "ek": 25.59, "zuschlag": 0, "vk": 25.59, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Rauhfaser 52 fachgerecht auf Stoss kleben und weiss streichen", "ek": 9.85, "zuschlag": 0, "vk": 9.85, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Rauhfaser 52 fachgerecht auf Stoss kleben und mit Dispersionsfarbe Nk3 streichen.", "ek": 9.85, "zuschlag": 26.90, "vk": 12.50, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Wandflaechen (Kalkzementputz) grundieren, schleifen, Rauhfaser 52 kleben und streichen", "ek": 10.50, "zuschlag": 0, "vk": 10.50, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Wandflaechen grundieren, schleifen, Rauhfaser 40 kleben und weiss streichen", "ek": 11.40, "zuschlag": 0, "vk": 11.40, "bezug": "wand" },
+      { "einheit": "m2", "kurztext": "Glasfaser fachgerecht auf Stoss kleben und weiss streichen", "ek": 14.99, "zuschlag": 0, "vk": 14.99, "bezug": "wand" },
+      { "einheit": "Rolle", "kurztext": "Tapete liefern. (mittlere Preisklasse)", "ek": 25.50, "zuschlag": 0, "vk": 25.50, "bezug": "stk" }
+    ],
+
+    "wand_und_decke_kombi": [
+      { "einheit": "m2", "kurztext": "Wand und Deckenflaechen weiss streichen", "ek": 5.65, "zuschlag": 0, "vk": 5.65, "bezug": "wand_decke" },
+      { "einheit": "m2", "kurztext": "Decken und Wandflaechen weiss streichen", "ek": 5.65, "zuschlag": 0, "vk": 5.65, "bezug": "wand_decke", "achtung": "Dublette zur Zeile darueber" },
+      { "einheit": "m2", "kurztext": "Decken und Wandflaechen altweiss streichen", "ek": 5.95, "zuschlag": 0, "vk": 5.95, "bezug": "wand_decke" },
+      { "einheit": "m2", "kurztext": "Zweifacher Anstrich von Wand und Deckenflaechen in weiss", "ek": 6.75, "zuschlag": 0, "vk": 6.75, "bezug": "wand_decke" },
+      { "einheit": "m2", "kurztext": "Decken u. Wandflaechen spachteln, schleifen und grundieren", "ek": 7.65, "zuschlag": 40.00, "vk": 10.71, "bezug": "wand_decke" },
+      { "einheit": "m2", "kurztext": "Decken u. Wandflaechen aus Rigips spachteln, schleifen und grundieren", "ek": 7.65, "zuschlag": 16.99, "vk": 8.95, "bezug": "wand_decke" },
+      { "einheit": "m2", "kurztext": "Decken und Wandflaechen Q3 spachteln", "ek": 8.96, "zuschlag": 0.80, "vk": 9.03, "bezug": "wand_decke" },
+      { "einheit": "m2", "kurztext": "Decken und Wandflaechen Q3 spachteln, schleifen, grundieren und 2x streichen", "ek": 18.54, "zuschlag": 0, "vk": 18.54, "bezug": "wand_decke" },
+      { "einheit": "m2", "kurztext": "Wand und Deckenflaechen mit Glattvlies tapezieren", "ek": 7.85, "zuschlag": 0, "vk": 7.85, "bezug": "wand_decke" },
+      { "einheit": "m2", "kurztext": "Decken- u. Wandflaechen mit Glattvlies tapezieren und streichen", "ek": 12.85, "zuschlag": 0, "vk": 12.85, "bezug": "wand_decke" },
+      { "einheit": "m2", "kurztext": "Decken und Wandflaechen spachteln, schleifen und grundieren. Glattvlies auf Stoss kleben und weiss streichen.", "ek": 21.35, "zuschlag": 0, "vk": 21.35, "bezug": "wand_decke" },
+      { "einheit": "m2", "kurztext": "Decken und Wandflaechen spachteln, schleifen und grundieren. Rauhfaser 52 auf Stoss kleben und weiss streichen", "ek": 16.55, "zuschlag": 0, "vk": 16.55, "bezug": "wand_decke" }
+    ],
+
+    "kanten_fugen_lfm": [
+      { "einheit": "Lfm.", "kurztext": "Eckschutzschienen aus Metall als Kantenschutz an Gipskarton anbringen", "ek": 1.80, "zuschlag": 0, "vk": 1.80, "bezug": "lfm_manuell" },
+      { "einheit": "Lfm.", "kurztext": "Ueberbrueckung von Putz zu GK Flaechen Armierungsstreifen", "ek": 5.50, "zuschlag": 0, "vk": 5.50, "bezug": "lfm_manuell" },
+      { "einheit": "Lfm.", "kurztext": "Anschlussfugen ausbilden, Wand und Deckenanschluesse mit Acryl ausbilden", "ek": 0.85, "zuschlag": 0, "vk": 0.85, "bezug": "umfang" },
+      { "einheit": "Lfm.", "kurztext": "Dehnungsfugen mit Acrylat ausbilden", "ek": 1.20, "zuschlag": 0, "vk": 1.20, "bezug": "lfm_manuell" },
+      { "einheit": "Lfm.", "kurztext": "Dehnungsfuge schneiden und mit Dichtstoff verschliessen", "ek": 1.60, "zuschlag": 0, "vk": 1.60, "bezug": "lfm_manuell" },
+      { "einheit": "Lfm.", "kurztext": "Dehnungsfugenprofil Alu liefern und fachgerecht einbauen", "ek": 13.45, "zuschlag": 0, "vk": 13.45, "bezug": "lfm_manuell" },
+      { "einheit": "Lfm.", "kurztext": "Trennschiene Alu einbetten inkl. Lieferung", "ek": 7.12, "zuschlag": 0, "vk": 7.12, "bezug": "lfm_manuell" },
+      { "einheit": "Lfm.", "kurztext": "Tapetenschienen liefern und montieren", "ek": 5.35, "zuschlag": 0, "vk": 5.35, "bezug": "lfm_manuell" },
+      { "einheit": "Lfm.", "kurztext": "Silikonfugen in weiss herstellen", "ek": 7.85, "zuschlag": 0, "vk": 7.85, "bezug": "lfm_manuell" },
+      { "einheit": "Lfm.", "kurztext": "Altes Silikon entfernen, Fugen saeubern und anschliessend neu versiegeln", "ek": 10.85, "zuschlag": 0, "vk": 10.85, "bezug": "lfm_manuell" }
+    ],
+
+    "boden_vorbereitung": [
+      { "einheit": "m2", "kurztext": "Estrich reinigen", "ek": 1.85, "zuschlag": 0, "vk": 1.85, "bezug": "boden" },
+      { "einheit": "m2", "kurztext": "Vorhandenen Estrich reinigen und anfallenden Muell fachgerecht entsorgen.", "ek": 1.85, "zuschlag": 0, "vk": 1.85, "bezug": "boden", "achtung": "nahezu Dublette zu Estrich reinigen" },
+      { "einheit": "m2", "kurztext": "Estrich reinigen, grundieren und spachteln", "ek": 8.95, "zuschlag": 0, "vk": 8.95, "bezug": "boden" },
+      { "einheit": "m2", "kurztext": "Betonboden schleifen und reinigen", "ek": 3.25, "zuschlag": 0, "vk": 3.25, "bezug": "boden" },
+      { "einheit": "m2", "kurztext": "Haftbruecke 2 K auftragen", "ek": 22.85, "zuschlag": 0, "vk": 22.85, "bezug": "boden" },
+      { "einheit": "m2", "kurztext": "Ueberstand Randdaemmstreifen abschneiden", "ek": 0.45, "zuschlag": 0, "vk": 0.45, "bezug": "boden" },
+      { "einheit": "m2", "kurztext": "Alten Bodenbelag entfernen und fachgerecht entsorgen", "ek": 6.78, "zuschlag": 0, "vk": 6.78, "bezug": "boden" },
+      { "einheit": "m2", "kurztext": "Laminatboden entfernen und entsorgen", "ek": 6.45, "zuschlag": 0, "vk": 6.45, "bezug": "boden" },
+      { "einheit": "m2", "kurztext": "Verklebten Parkett fachmaennisch entfernen und entsorgen", "ek": 10.50, "zuschlag": 0, "vk": 10.50, "bezug": "boden" },
+      { "einheit": "Lfm.", "kurztext": "Vorhandene Fussleisten entfernen und entsorgen", "ek": 2.10, "zuschlag": 0, "vk": 2.10, "bezug": "umfang" }
+    ],
+
+    "boden_belag": [
+      { "einheit": "m2", "kurztext": "Fussboden reinigen, grundieren, spachteln, schleifen und Design Belag vollflaechig verkleben.", "ek": 22.85, "zuschlag": 0, "vk": 22.85, "bezug": "boden", "achtung": "existiert dreimal in leicht unterschiedlicher Schreibweise" },
+      { "einheit": "m2", "kurztext": "Fussboden reinigen, grundieren, spachteln, schleifen und Design Belag vollflaechig verkleben. (Ohne Designbelag)", "ek": 22.85, "zuschlag": 0, "vk": 22.85, "bezug": "boden" },
+      { "einheit": "m2", "kurztext": "Fussboden reinigen, grundieren, spachteln,, schleifen und Design Belag vollflaechig verkleben. (inkl. Designbelag)", "ek": 48.50, "zuschlag": 0, "vk": 48.50, "bezug": "boden", "achtung": "doppeltes Komma im Text" },
+      { "einheit": "m2", "kurztext": "Fussboden reinigen, grundieren, spachteln, schleifen und Nadelfilz verlegen", "ek": 17.03, "zuschlag": 37.98, "vk": 23.50, "bezug": "boden" },
+      { "einheit": "m2", "kurztext": "Vinylboden vollflaechig verlegen und verkleben", "ek": 12.50, "zuschlag": 0, "vk": 12.50, "bezug": "boden" },
+      { "einheit": "m2", "kurztext": "Vinylbelag 0,55 Nutzschicht liefern", "ek": 22.50, "zuschlag": 0, "vk": 22.50, "bezug": "boden", "hinweis": "Materialposition, laut Angeboten mit Verschnittzuschlag gegenueber der Bodenflaeche" },
+      { "einheit": "m2", "kurztext": "Teppichboden vollflaechig verlegen und verkleben. (ohne Material)", "ek": 6.85, "zuschlag": 0, "vk": 6.85, "bezug": "boden" },
+      { "einheit": "m2", "kurztext": "Laminatboden liefern und verlegen. (inkl. Material)", "ek": 38.42, "zuschlag": 0, "vk": 38.42, "bezug": "boden" },
+      { "einheit": "m2", "kurztext": "Parkett liefern und vollflaechig verkleben. (inkl. Material)", "ek": 92.58, "zuschlag": 0, "vk": 92.58, "bezug": "boden" }
+    ],
+
+    "boden_abschluss": [
+      { "einheit": "Lfm.", "kurztext": "Sockelleiste Ep 60/13 liefern und montieren", "ek": 8.25, "zuschlag": 0, "vk": 8.25, "bezug": "umfang" },
+      { "einheit": "Lfm.", "kurztext": "Sockelleiste SL1660 (Hamburger Profil) liefern und montieren", "ek": 9.25, "zuschlag": 0, "vk": 9.25, "bezug": "umfang" },
+      { "einheit": "Lfm.", "kurztext": "Sockelleisten TS 60 liefern und montieren", "ek": 4.13, "zuschlag": 66.09, "vk": 6.85, "bezug": "umfang" }
+    ],
+
+    "tueren_zargen_heizkoerper": [
+      { "einheit": "Stk.", "kurztext": "Stahlzargen 2x weiss lackierern", "ek": 46.00, "zuschlag": 0, "vk": 46.00, "bezug": "stk", "achtung": "Tippfehler: lackierern" },
+      { "einheit": "Stk.", "kurztext": "Tuerzargen schleifen, reinigen und lackieren", "ek": 22.99, "zuschlag": 70.46, "vk": 39.18, "bezug": "stk" },
+      { "einheit": "Stk.", "kurztext": "Tuerblaetter, beidseitig schleifen und 2x lackieren", "ek": 56.25, "zuschlag": 15.00, "vk": 64.69, "bezug": "stk" },
+      { "einheit": "Stk.", "kurztext": "Badezimmertueren versiegeln", "ek": 20.00, "zuschlag": 0, "vk": 20.00, "bezug": "stk" },
+      { "einheit": "Stk.", "kurztext": "Heizkoerper schleifen und lackieren", "ek": 38.75, "zuschlag": 15.00, "vk": 44.56, "bezug": "stk" },
+      { "einheit": "Stk.", "kurztext": "Akustikpaneel liefern und montieren", "ek": 80.00, "zuschlag": 0, "vk": 80.00, "bezug": "stk" },
+      { "einheit": "Stk.", "kurztext": "Betontreppenlaeufe unterseitig und seitlich anspachteln", "ek": 600.00, "zuschlag": 0, "vk": 600.00, "bezug": "stk" }
+    ],
+
+    "fassade": [
+      { "einheit": "m2", "kurztext": "Fassade reinigen und mit Capatox einstreichen", "ek": 3.41, "zuschlag": 0, "vk": 3.41, "bezug": "fassade" },
+      { "einheit": "m2", "kurztext": "Fassadenflaechen mit einem Hochdruckreiniger schonend reinigen.", "ek": 3.45, "zuschlag": 0, "vk": 3.45, "bezug": "fassade" },
+      { "einheit": "m2", "kurztext": "Fassade 2x streichen mit Caparol ThermoSan NQG, Farbton in weiss", "ek": 16.85, "zuschlag": 0, "vk": 16.85, "bezug": "fassade" },
+      { "einheit": "m2", "kurztext": "Vorhandene Holzfassadenflaechen mit Holzschutz-Grundierung grundieren", "ek": 14.50, "zuschlag": 0, "vk": 14.50, "bezug": "fassade" }
+    ]
+  }
+}
