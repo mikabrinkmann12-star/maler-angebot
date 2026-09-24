@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aufmaß-Rechner</title>
+<style>
+  :root {
+    --bg: #f4f5f7;
+    --card: #ffffff;
+    --text: #1d2330;
+    --muted: #5d6677;
+    --line: #d6dae1;
+    --accent: #1f6feb;
+    --danger: #c62828;
+    --ok-bg: #eef5ff;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 17px;
+    line-height: 1.4;
+    background: var(--bg);
+    color: var(--text);
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 16px 16px 48px; }
+  h1 { font-size: 1.5rem; margin: 8px 0 16px; }
+  h2 { font-size: 1.15rem; margin: 0; }
+  h3 { font-size: 1rem; margin: 16px 0 8px; color: var(--muted); }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  label { display: block; font-size: 0.9rem; color: var(--muted); margin-bottom: 4px; }
+  .field { margin-bottom: 12px; }
+  input, select {
+    width: 100%;
+    font: inherit;
+    font-size: 18px;            /* >=16px verhindert Auto-Zoom auf iOS */
+    padding: 12px;
+    min-height: 48px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--text);
+  }
+  input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  input.invalid { border-color: var(--danger); background: #fff5f5; }
+
+  button {
+    font: inherit;
+    min-height: 48px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--text);
+    cursor: pointer;
+  }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; width: 100%; font-weight: 600; }
+  button.danger { color: var(--danger); border-color: var(--danger); }
+  button.secondary { width: 100%; }
+
+  .room-head { display: flex; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+
+  .opening {
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+  .opening-info { font-size: 0.9rem; color: var(--muted); margin: 0 0 8px; }
+  .opening-info.counts { color: var(--text); }
+
+  .results {
+    background: var(--ok-bg);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 16px;
+  }
+  .row { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; }
+  .row span:last-child { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  .row.strong { font-weight: 700; border-top: 1px solid var(--line); margin-top: 4px; padding-top: 8px; }
+
+  .empty { color: var(--muted); text-align: center; padding: 24px 0; }
+  .summary h2 { margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Aufmaß-Rechner</h1>
+
+  <section class="card">
+    <div class="field">
+      <label for="schwelle">Öffnungen abziehen ab Einzelfläche (m²)</label>
+      <input id="schwelle" type="text" inputmode="decimal" autocomplete="off">
+    </div>
+  </section>
+
+  <div id="raeume"></div>
+
+  <button id="raum-add" class="primary" type="button">+ Raum hinzufügen</button>
+
+  <section class="card summary" style="margin-top:16px">
+    <h2>Summe aller Räume</h2>
+    <div id="summe"></div>
+  </section>
+</main>
+
+<script>
+// Schwellwert: Öffnungen werden nur abgezogen, wenn ihre Einzelfläche >= diesem Wert ist.
+const ABZUG_AB_QM = 2.5;
+
+const STORAGE_KEY = "aufmass-rechner-v1";
+
+// ---------- Hilfsfunktionen ----------
+
+// Akzeptiert Komma und Punkt als Dezimaltrennzeichen. Leer -> 0, ungültig -> NaN.
+function parseZahl(str) {
+  const s = String(str ?? "").trim().replace(/\s/g, "").replace(",", ".");
+  if (s === "") return 0;
+  if (!/^-?\d*\.?\d*$/.test(s) || s === "." || s === "-") return NaN;
+  return Number(s);
+}
+
+function zahl(str) {
+  const n = parseZahl(str);
+  return Number.isFinite(n) && n > 0 ? n : 0;
+}
+
+const fmt = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+function qm(n) { return fmt.format(n) + " m²"; }
+function m(n)  { return fmt.format(n) + " m"; }
+
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+
+function el(tag, attrs = {}, children = []) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") e.className = v;
+    else if (k === "text") e.textContent = v;
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v);
+  }
+  for (const c of [].concat(children)) if (c) e.append(c);
+  return e;
+}
+
+// ---------- Zustand ----------
+
+let state = { schwelle: String(ABZUG_AB_QM).replace(".", ","), raeume: [] };
+
+function neuerRaum(nr) {
+  return { id: uid(), name: "Raum " + nr, laenge: "", breite: "", hoehe: "", oeffnungen: [] };
+}
+function neueOeffnung() {
+  return { id: uid(), typ: "Fenster", breite: "", hoehe: "", anzahl: "1" };
+}
+
+function laden() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (data && Array.isArray(data.raeume)) {
+      state = {
+        schwelle: typeof data.schwelle === "string" ? data.schwelle : state.schwelle,
+        raeume: data.raeume,
+      };
+    }
+  } catch (e) { /* Speicher nicht verfügbar oder kaputt: mit leerem Zustand starten */ }
+}
+
+function speichern() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) { /* ignorieren */ }
+}
+
+// ---------- Berechnung ----------
+
+function schwellwert() {
+  const n = parseZahl(state.schwelle);
+  return Number.isFinite(n) && n >= 0 ? n : ABZUG_AB_QM;
+}
+
+function berechneRaum(r, schwelle) {
+  const L = zahl(r.laenge), B = zahl(r.breite), H = zahl(r.hoehe);
+  const decke = L * B;
+  const boden = L * B;
+  const umfang = 2 * (L + B);
+  const brutto = umfang * H;
+  let abzug = 0;
+  for (const o of r.oeffnungen) {
+    const einzel = zahl(o.breite) * zahl(o.hoehe);
+    const anzahl = Math.floor(zahl(o.anzahl));
+    if (einzel > 0 && einzel >= schwelle) abzug += einzel * anzahl;
+  }
+  const netto = Math.max(0, brutto - abzug);
+  return { decke, boden, umfang, brutto, abzug, netto };
+}
+
+// ---------- Darstellung ----------
+
+const raeumeEl = document.getElementById("raeume");
+const summeEl = document.getElementById("summe");
+const schwelleEl = document.getElementById("schwelle");
+
+function ergebnisZeilen(e) {
+  return [
+    ["Deckenfläche", qm(e.decke)],
+    ["Bodenfläche", qm(e.boden)],
+    ["Umfang", m(e.umfang)],
+    ["Wandfläche brutto", qm(e.brutto)],
+    ["Abzug Öffnungen", "− " + qm(e.abzug)],
+    ["Wandfläche netto", qm(e.netto), true],
+  ].map(([k, v, strong]) =>
+    el("div", { class: "row" + (strong ? " strong" : "") }, [el("span", { text: k }), el("span", { text: v })])
+  );
+}
+
+// Eingabefeld, das seinen Wert direkt in obj[key] schreibt.
+function zahlFeld(labelText, obj, key, extra = {}) {
+  const id = "f-" + uid();
+  const input = el("input", {
+    id, type: "text", inputmode: extra.inputmode || "decimal", autocomplete: "off",
+    placeholder: extra.placeholder || "0,00",
+  });
+  input.value = obj[key];
+  const check = () => input.classList.toggle("invalid", Number.isNaN(parseZahl(input.value)));
+  check();
+  input.addEventListener("input", () => { obj[key] = input.value; check(); aktualisieren(); });
+  return el("div", { class: "field" }, [el("label", { for: id, text: labelText }), input]);
+}
+
+function renderOeffnung(raum, o) {
+  const typId = "t-" + uid();
+  const sel = el("select", { id: typId }, ["Fenster", "Tür"].map(t => el("option", { value: t, text: t })));
+  sel.value = o.typ;
+  sel.addEventListener("change", () => { o.typ = sel.value; speichern(); });
+
+  const info = el("p", { class: "opening-info", "data-oeffnung": o.id });
+
+  return el("div", { class: "opening" }, [
+    el("div", { class: "field" }, [el("label", { for: typId, text: "Art" }), sel]),
+    zahlFeld("Breite (m)", o, "breite"),
+    zahlFeld("Höhe (m)", o, "hoehe"),
+    zahlFeld("Anzahl", o, "anzahl", { inputmode: "numeric", placeholder: "1" }),
+    info,
+    el("button", {
+      type: "button", class: "danger secondary", text: "Öffnung entfernen",
+      onclick: () => { raum.oeffnungen = raum.oeffnungen.filter(x => x !== o); render(); },
+    }),
+  ]);
+}
+
+function renderRaum(r) {
+  const nameId = "n-" + uid();
+  const nameInput = el("input", { id: nameId, type: "text", autocomplete: "off" });
+  nameInput.value = r.name;
+  nameInput.addEventListener("input", () => { r.name = nameInput.value; speichern(); });
+
+  return el("section", { class: "card", "data-raum": r.id }, [
+    el("div", { class: "room-head" }, [
+      el("h2", { text: "Raum" }),
+      el("button", {
+        type: "button", class: "danger", text: "Raum löschen",
+        onclick: () => {
+          if (!confirm(`„${r.name || "Raum"}“ wirklich löschen?`)) return;
+          state.raeume = state.raeume.filter(x => x !== r);
+          render();
+        },
+      }),
+    ]),
+    el("div", { class: "field" }, [el("label", { for: nameId, text: "Name" }), nameInput]),
+    zahlFeld("Länge (m)", r, "laenge"),
+    zahlFeld("Breite (m)", r, "breite"),
+    zahlFeld("Höhe (m)", r, "hoehe"),
+    el("h3", { text: "Fenster und Türen" }),
+    ...r.oeffnungen.map(o => renderOeffnung(r, o)),
+    el("button", {
+      type: "button", class: "secondary", text: "+ Öffnung hinzufügen",
+      onclick: () => { r.oeffnungen.push(neueOeffnung()); render(); },
+    }),
+    el("div", { class: "results", "data-ergebnis": r.id }),
+  ]);
+}
+
+// Kompletter Neuaufbau (nur bei Hinzufügen/Löschen), damit Tippen den Fokus nicht verliert.
+function render() {
+  raeumeEl.replaceChildren();
+  if (state.raeume.length === 0) {
+    raeumeEl.append(el("p", { class: "card empty", text: "Noch keine Räume. Tippe auf „Raum hinzufügen“." }));
+  }
+  for (const r of state.raeume) raeumeEl.append(renderRaum(r));
+  aktualisieren();
+}
+
+// Nur Ergebnisse neu berechnen und schreiben.
+function aktualisieren() {
+  const s = schwellwert();
+  const summe = { decke: 0, boden: 0, umfang: 0, brutto: 0, abzug: 0, netto: 0 };
+
+  for (const r of state.raeume) {
+    const e = berechneRaum(r, s);
+    for (const k in summe) summe[k] += e[k];
+    const box = raeumeEl.querySelector(`[data-ergebnis="${r.id}"]`);
+    if (box) box.replaceChildren(...ergebnisZeilen(e));
+
+    for (const o of r.oeffnungen) {
+      const info = raeumeEl.querySelector(`[data-oeffnung="${o.id}"]`);
+      if (!info) continue;
+      const einzel = zahl(o.breite) * zahl(o.hoehe);
+      const zieht = einzel > 0 && einzel >= s;
+      info.classList.toggle("counts", zieht);
+      info.textContent = `Einzelfläche ${qm(einzel)} – ` + (zieht ? "wird abgezogen" : "wird nicht abgezogen");
+    }
+  }
+
+  summeEl.replaceChildren(
+    el("div", { class: "row" }, [el("span", { text: "Anzahl Räume" }), el("span", { text: String(state.raeume.length) })]),
+    ...ergebnisZeilen(summe)
+  );
+  speichern();
+}
+
+// ---------- Start ----------
+
+laden();
+schwelleEl.value = state.schwelle;
+const pruefeSchwelle = () => {
+  const n = parseZahl(schwelleEl.value);
+  schwelleEl.classList.toggle("invalid", !Number.isFinite(n) || n < 0);
+};
+pruefeSchwelle();
+schwelleEl.addEventListener("input", () => { state.schwelle = schwelleEl.value; pruefeSchwelle(); aktualisieren(); });
+
+document.getElementById("raum-add").addEventListener("click", () => {
+  const r = neuerRaum(state.raeume.length + 1);
+  state.raeume.push(r);
+  render();
+  const neu = raeumeEl.querySelector(`[data-raum="${r.id}"]`);
+  if (neu) neu.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+render();
+</script>
+</body>
+</html>
