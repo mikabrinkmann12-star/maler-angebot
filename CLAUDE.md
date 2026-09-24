@@ -60,9 +60,8 @@ Nettowandfläche   = Bruttowandfläche - Abzug
 `ABZUG_AB_QM` steht als Konstante oben im JS und ist im UI änderbar.
 Standard 2.5 (VOB/C: Öffnungen unter 2,5 m² werden übermessen).
 
-**Offen:** Der Inhaber hat zwei Varianten genannt — VOB mit 2,5 m² oder
-pauschal ab 2,0 m² nach Kundenabsprache. Deshalb einstellbar, nicht
-fest verdrahtet. Muss noch endgültig geklärt werden.
+**Geklärt:** Der Inhaber rechnet nach VOB: Öffnungen ab 2,5 m² Einzelfläche
+werden abgezogen, kleinere nicht. Der Wert bleibt trotzdem im UI änderbar.
 
 ## Technische Entscheidungen (nicht ändern)
 
